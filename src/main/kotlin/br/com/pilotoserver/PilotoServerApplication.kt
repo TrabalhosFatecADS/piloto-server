@@ -20,12 +20,13 @@ open class PilotoServerApplication {
 		pessoaRepository.deleteAll()
 
 		pessoaRepository.save(Pessoa("Pessoa Piloto","Piloto", "Sem Texto"))
+		pessoaRepository.save(Pessoa("Pessoa CoPiloto","CoPiloto", "Sem Texto"))
 
 		Stream.of("VW,Golf,", "VW,Touareg,", "VW,Fusca,",
 				"Audi,A3,", "Audi,A4,", "Audi,A8,",
 				"Mercedes,GT,", "Mercedes,A45,", "Mercedes,E63,")
 				.map { fn -> fn.split(",") }
-				.forEach { veiculo -> veiculoRepository.save(Veiculo(veiculo[0], veiculo[1], Pessoa(apelido = "Piloto") )) }
+				.forEach { veiculo -> veiculoRepository.save(Veiculo(veiculo[0], veiculo[1], Pessoa() )) }
 
 		veiculoRepository.all().forEach { println(it) }
 
